@@ -6,6 +6,7 @@
         "namespace": "dev",
         "creationTimestamp": null,
         "labels": {
+            "app.kubernetes.io/instance": "tom-trial-nkez-dev",
             "fluentd": "true"
         }
     },
@@ -17,13 +18,13 @@
                 "graph": {
                     "name": "iris3-container",
                     "type": "MODEL",
-                    "implementation": "SKLEARN_SERVER",
+                    "implementation": "XGBOOST_SERVER",
                     "endpoint": {
                         "service_host": "localhost",
                         "service_port": 9000,
                         "type": "REST"
                     },
-                    "modelUri": "gs://seldon-models/sklearn/iris",
+                    "modelUri": "gs://seldon-models/xgboost/iris",
                     "logger": {
                         "mode": "all"
                     }
@@ -31,13 +32,13 @@
                 "componentSpecs": [
                     {
                         "metadata": {
-                            "creationTimestamp": "2020-12-10T12:30:23Z"
+                            "creationTimestamp": "2020-12-10T12:51:57Z"
                         },
                         "spec": {
                             "containers": [
                                 {
                                     "name": "iris3-container",
-                                    "image": "seldonio/sklearnserver_rest:1.4.0",
+                                    "image": "seldonio/xgboostserver_rest:1.4.0",
                                     "ports": [
                                         {
                                             "name": "metrics",
@@ -47,11 +48,11 @@
                                     ],
                                     "resources": {
                                         "limits": {
-                                            "cpu": "2",
+                                            "cpu": "1",
                                             "memory": "1Gi"
                                         },
                                         "requests": {
-                                            "cpu": "2",
+                                            "cpu": "1",
                                             "memory": "1Gi"
                                         }
                                     },
@@ -72,52 +73,7 @@
                     "version": "default"
                 },
                 "svcOrchSpec": {},
-                "traffic": 90
-            },
-            {
-                "name": "canary",
-                "graph": {
-                    "name": "iris3-container",
-                    "implementation": "XGBOOST_SERVER",
-                    "endpoint": {
-                        "type": "REST"
-                    },
-                    "modelUri": "gs://seldon-models/xgboost/iris",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2020-12-10T12:51:57Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "iris3-container",
-                                    "resources": {
-                                        "limits": {
-                                            "cpu": "1",
-                                            "memory": "1Gi"
-                                        },
-                                        "requests": {
-                                            "cpu": "1",
-                                            "memory": "1Gi"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "annotations": {
-                    "seldon.io/canary": "true"
-                },
-                "engineResources": {},
-                "svcOrchSpec": {},
-                "traffic": 10
+                "traffic": 100
             }
         ],
         "annotations": {
