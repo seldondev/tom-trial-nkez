@@ -1,0 +1,36 @@
+{
+    "metadata": {
+        "name": "adp-test-2",
+        "namespace": "dev",
+        "creationTimestamp": null
+    },
+    "spec": {
+        "predictors": [
+            {
+                "name": "",
+                "graph": {
+                    "name": "adp-test-2"
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": null
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "adp-test-2",
+                                    "image": "face_anonymization:latest",
+                                    "resources": {}
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "engineResources": {},
+                "svcOrchSpec": {}
+            }
+        ]
+    },
+    "status": {}
+}
